@@ -13,7 +13,7 @@ logger = logging.getLogger()
 
 def backup_commands(parser):
     parser.set_defaults(func=backup.backup)
-    parser.add_argument("--name", type=str, required=False, help="Device Names")
+    parser.add_argument("-n", "--name", type=str, required=False, help="Device Names")
 
 
 def shell_commands(parser):

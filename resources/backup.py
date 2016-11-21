@@ -2,6 +2,7 @@ from enum import Enum
 from logging import getLogger
 
 from . import telnet
+from .config import search_name, load_device_settings
 
 __all__ = ['backup']
 
@@ -20,13 +21,17 @@ class Backup(object):
         else:
             names = config.devices.keys()
 
-        for name in names:
+        for raw_name in names:
+            name = search_name(config, raw_name)
+            if name is None:
+                self.logger.warning("Name '{}' not in config. Skip.".format(raw_name))
+                continue
+
             self.backup_device(name, config)
 
     def backup_device(self, name, config):
         self.logger.info(">>> Start Backup '{}' <<<".format(name))
-        ctx = config.defaults.copy()
-        ctx.update(config.devices.get(name))
+        ctx = load_device_settings(config, name)
 
         target = config.backup.get('address')
         target = target[:-1] if target[-1] == "/" else target
