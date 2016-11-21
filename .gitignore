@@ -1,0 +1,16 @@
+# Folders
+_tmp/*
+*/.cache/*
+.cache/*
+tests/htmlcov/*
+.hg/*
+
+# Files
+.coverage
+.hg*
+config/instance.py
+*.pyc
+*~
+*.idea
+*.conf
+*.db
