@@ -1,16 +1,17 @@
 # Folders
-_tmp/*
-*/.cache/*
-.cache/*
-tests/htmlcov/*
-.hg/*
+.cache/
+.hg/
+.vscode/
+
+**/__samples__/
+**/__pycache__/
 
 # Files
 .coverage
 .hg*
-config/instance.py
 *.pyc
 *~
 *.idea
 *.conf
 *.db
+*.orig
