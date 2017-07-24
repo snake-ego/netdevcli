@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf8 -*-
 import os
 from os import path as op
 from subprocess import PIPE, Popen

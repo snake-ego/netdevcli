@@ -1,7 +1,6 @@
 import pexpect
 from enum import Enum
 from logging import getLogger
-# from re import compile
 
 PROMPTS = Enum('DeviceModePrompt', {
     'standart': ".*>",

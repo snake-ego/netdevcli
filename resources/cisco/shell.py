@@ -2,9 +2,9 @@ from enum import Enum
 from logging import getLogger
 
 from . import telnet
-from .config import search_name, load_device_settings
+from ..config import search_name, load_device_settings
 
-__all__ = ['shell']
+__all__ = ['Shell']
 
 
 class Shell(object):
@@ -38,6 +38,3 @@ class Shell(object):
 
     def enter_through_ssh(self, address, name, user, password):
         raise NotImplementedError
-
-
-shell = Shell()

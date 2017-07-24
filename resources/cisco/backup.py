@@ -2,9 +2,9 @@ from enum import Enum
 from logging import getLogger
 
 from . import telnet
-from .config import search_name, load_device_settings
+from ..config import search_name, load_device_settings
 
-__all__ = ['backup']
+__all__ = ['Backup']
 
 
 class Backup(object):
@@ -51,6 +51,3 @@ class Backup(object):
 
     def backup_through_ssh(self, address, name, user, password, target):
         raise NotImplementedError
-
-
-backup = Backup()
