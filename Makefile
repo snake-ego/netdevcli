@@ -67,3 +67,22 @@ shell:
 .PHONY: python
 python: 
 	@ /usr/bin/env python
+
+
+.PHONY: pack
+pack: prepare build
+
+.PHONY: build
+build: RUN_FILE = manage.py
+build: BUILD_FOLDER = ../build
+build: NAME = netdev
+build: 
+	@ rm -rf $(BUILD_FOLDER)/*
+	@ pyinstaller -F \
+	    --exclude-module PyInstaller \
+	    --specpath "$(BUILD_FOLDER)" \
+	    --distpath "$(BUILD_FOLDER)/dist" \
+	    --workpath "$(BUILD_FOLDER)/build" \
+		--name "$(NAME)" \
+	    $(RUN_FILE)
+	@ $(MAKE) clean
