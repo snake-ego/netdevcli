@@ -91,7 +91,6 @@ class ConfigYAML(object):
         )
         for rule in rules:
             configpath = rule.format(os.environ.get(CONFIG_ENV, ''))
-            print(configpath)
             if op.exists(configpath):
                 return configpath
 
