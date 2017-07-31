@@ -42,9 +42,9 @@ def set_admin_mode(cli, password=None):
 
 def copy_config(cli, target):
     logger.info('Copy configuration into "{}"'.format(target))
-    cli.sendline("copy running {}/running-config\n\n\n".format(target))
+    cli.sendline("copy running {}.running.cfg\n\n\n".format(target))
     cli.expect(PROMPTS.admin.value)
-    cli.sendline("copy startup {}/startup-config\n\n\n".format(target))
+    cli.sendline("copy startup {}.startup.cfg\n\n\n".format(target))
     cli.expect(PROMPTS.admin.value)
     return cli
 
