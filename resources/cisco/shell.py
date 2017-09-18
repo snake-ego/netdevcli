@@ -30,11 +30,11 @@ class Shell(object):
         ctx.update({'address': address}) if 'address' not in ctx else None
         fn(self, name=name, **ctx)
 
-    def enter_through_telnet(self, address, name, user, password):
+    def enter_through_telnet(self, address, name, user, password, **ctx):
         runner = telnet.connect(address, user, password)
         telnet.set_admin_mode(runner, password)
         telnet.enter_interactive_session(runner)
         telnet.disconnect(runner)
 
-    def enter_through_ssh(self, address, name, user, password):
+    def enter_through_ssh(self, address, name, user, password, **ctx):
         raise NotImplementedError
