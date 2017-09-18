@@ -118,6 +118,8 @@ def search_name(config, name):
 
 def load_device_settings(config, name):
     out = config.defaults.copy()
+    domain = config.devices.get(name, dict()).get('domain')
+    out.update(config.get(domain, dict())) if domain is not None else None
     out.update(config.devices.get(name, dict()))
     out.pop('alias', None)
     return out

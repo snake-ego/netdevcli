@@ -26,6 +26,8 @@ class Backup(object):
             if name is None:
                 self.logger.warning("Name '{}' not in config. Skip.".format(raw_name))
                 continue
+            elif name == 'bluecoat':
+                continue
 
             self.backup_device(name, config)
 
@@ -33,7 +35,7 @@ class Backup(object):
         self.logger.info(">>> Start Backup '{}' <<<".format(name))
         ctx = load_device_settings(config, name)
 
-        target = config.backup.get('address')
+        target = ctx['backup'].get('address')
         target = target[:-1] if target[-1] == "/" else target
 
         if not hasattr(self.protocols, ctx.get('protocol')):
@@ -42,12 +44,12 @@ class Backup(object):
         fn = getattr(self.protocols, ctx.pop('protocol'))
         fn(self, name=name, target=target, **ctx)
 
-    def backup_through_telnet(self, address, name, user, password, target):
+    def backup_through_telnet(self, address, name, user, password, target, **ctx):
         runner = telnet.connect(address, user, password)
         telnet.set_admin_mode(runner, password)
         telnet.copy_config(runner, "/".join([target, str(name)]))
         telnet.save_running_configuration(runner)
         telnet.disconnect(runner)
 
-    def backup_through_ssh(self, address, name, user, password, target):
+    def backup_through_ssh(self, address, name, user, password, target, **ctx):
         raise NotImplementedError
