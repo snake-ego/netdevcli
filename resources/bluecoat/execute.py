@@ -29,7 +29,7 @@ class Execute(object):
         ctx.update({'address': address}) if 'address' not in ctx else None
         fn(self, command=command, **ctx)
 
-    def enter_through_ssh(self, command, address, user, password, admin_password=None):
+    def enter_through_ssh(self, command, address, user, password, admin_password=None, **ctx):
         admin_password = admin_password if isinstance(admin_password, str) else password
 
         runner = ssh.connect(address, user, password)
